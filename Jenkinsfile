@@ -12,7 +12,6 @@ pipeline {
         NEXUS_REPOSITORY = "maven-releases"
 	NEXUS_REPO_ID = "maven-releases"
 	NEXUS_CREDENTIAL_ID = "nexus3"
-        ARTVERSION = "${env.BUILD_ID}"
 	AWS_REGION = "us-east-1"
 	ECR_REGISTRY_ID = "291222035571.dkr.ecr.us-east-1.amazonaws.com/samim-repo1"
 	EKS_CLUSTER_NAME1 = "cluster3333"
