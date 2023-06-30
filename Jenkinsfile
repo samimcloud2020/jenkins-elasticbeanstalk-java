@@ -119,6 +119,14 @@ pipeline {
                 }
             }
         }
+     stage('Push jar file to s3 bucket') {
+            steps {
+                withAWS(credentials: 'aws', region: 'us-east-1') {
+			sh 'aws configure set region us-east-1'
+                        sh 'aws s3 cp ./target/MavenTutorial-${ARTVERSION}.war s3://$BUCKET/MavenTutorial-${ARTVERSION}.war'
+			}
+		}
+	}	 
      stage ('Pull jar file from Nexus') {
         	steps {
 		script{
@@ -175,14 +183,7 @@ pipeline {
             }
         }
 }
-    stage('Push jar file to s3 bucket') {
-            steps {
-                withAWS(credentials: 'aws', region: 'us-east-1') {
-			sh 'aws configure set region us-east-1'
-                        sh 'aws s3 cp ./target/MavenTutorial-${ARTVERSION}.war s3://$BUCKET/MavenTutorial-${ARTVERSION}.war'
-			}
-		}
-	}
+    
 	 stage ('mvn clean deploy'){
             steps {
                 sh 'mvn clean deploy'
