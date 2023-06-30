@@ -59,7 +59,14 @@ pipeline {
                 }
             }
         }
-	stage('CODE ANALYSIS with SONARQUBE') {
+	 stage('CODE ANALYSIS with SONARQUBE') {
+          
+		    environment {
+                scannerHome = tool 'sonar'
+          }
+
+           
+     	 stage('CODE ANALYSIS with SONARQUBE') {
           
 		    environment {
                 scannerHome = tool 'sonar'
@@ -82,31 +89,7 @@ pipeline {
             }
           }
         }
-	 /*
-     	 stage('CODE ANALYSIS with SONARQUBE') {
-          
-		    environment {
-                scannerHome = tool 'sonar'
-          }
-
-            steps {
-                withSonarQubeEnv('sonar') {
-                sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=sonar \
-                   -Dsonar.projectName=project1 \
-                   -Dsonar.projectVersion=1.0 \
-                   -Dsonar.sources=src/main/java \
-                   -Dsonar.java.binaries=target/classes \
-                   -Dsonar.junit.reportsPath=target/surefire-reports/ \
-                   -Dsonar.jacoco.reportsPath=target/jacoco.exec \
-                   -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml'''
-            }
-
-            timeout(time: 10, unit: 'MINUTES') {
-               waitForQualityGate abortPipeline: true
-            }
-          }
-        }
-	*/
+	
 stage("Publish to Nexus Repository Manager") {
             steps {
                 script {
