@@ -1,15 +1,13 @@
 pipeline {
     agent any 
      environment {
-        AWS_ACCESS_KEY_ID     = credentials('jenkins-aws-secret-key-id')
-        AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws-secret-access-key')
-        ARTIFACT_NAME = 'calculator.jar'
+        #AWS_ACCESS_KEY_ID     = credentials('jenkins-aws-secret-key-id')
+        #AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws-secret-access-key')
+        #ARTIFACT_NAME = 'calculator.jar'
         AWS_EB_APP_NAME = 'app1'
-        AWS_EB_ENVIRONMENT = 'App1-env'
+        AWS_EB_ENVIRONMENT = 'env1'
         AWS_EB_APP_VERSION = "${BUILD_ID}"
         ARTVERSION = "${env.BUILD_ID}"
-        CLUSTER_NAME = 'stagging'
-        CLUSTER_NAME1 = "production"
         CREDENTIALS_ID = 'multi-k8s' 
 	NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "http"
@@ -121,7 +119,7 @@ stage("Publish to Nexus Repository Manager") {
                 }
             }
         }
-     stage ('Pull jar file from Nexus & Make docker build') {
+     stage ('Pull jar file from Nexus') {
         	steps {
 			    script{
                     withCredentials([usernameColonPassword(credentialsId: 'nexus3', variable: 'NEXUS_CREDENTIALS_ID')]) {
@@ -135,9 +133,9 @@ stage("Publish to Nexus Repository Manager") {
 	            sh " echo CMD catalina.sh run >> Dockerfile"
 		    sh " echo EXPOSE 8080 >> Dockerfile"
 				 }
-				}
+			    }
 			}
-		} 	     
+		  } 	     
 	stage("Build image") {
             steps {
                 script {
@@ -181,7 +179,7 @@ stage("Publish to Nexus Repository Manager") {
             steps {
                 withAWS(credentials: 'aws', region: 'us-east-1') {
 			sh 'aws configure set region us-east-1'
-                    	sh 'aws s3 cp ./target/hellomaven-2.0-SNAPSHOT.jar s3://${BUCKET}/hellomaven-${ARTVERSION}.jar'
+                        sh 'aws s3 cp ./target/MavenTutorial-"${ARTVERSION}".war s3://$BUCKET/MavenTutorial-"${ARTVERSION}".war'
 			}
 		}
 	}
@@ -195,8 +193,8 @@ stage("Publish to Nexus Repository Manager") {
                 }
             }
         }  
-
-    stage('Integrate Jenkins with EKS Cluster and Deploy App') {
+/*
+    stage('Integrate Jenkins with EKS Cluster and Deploy App in stagging cluster') {
             steps {
                 withAWS(credentials: 'aws', region: 'us-east-1') {
                   script {
@@ -213,7 +211,7 @@ stage("Publish to Nexus Repository Manager") {
                 }
             }
         }
-   stage('Integrate Jenkins with EKS Cluster and Deploy App') {
+   stage('Integrate Jenkins with EKS Cluster and Deploy App in production cluster') {
             steps {
                 withAWS(credentials: 'aws', region: 'us-east-1') {
                   script {
@@ -223,18 +221,13 @@ stage("Publish to Nexus Repository Manager") {
             }
         }
      }	 
-	 
-      stage('Publish') {
+*/	 
+      stage('Deploy to Elastic Beanstalk of war file') {
             steps {
-                sh './mvnw package'
-                // bat '.\mvnw package'
-            }
-            post {
-                success {
-                    archiveArtifacts 'target/*.jar'
+                withAWS(credentials: 'aws', region: 'us-east-1') {
+                  script {
                     sh 'aws configure set region us-east-1'
-                    sh 'aws s3 cp ./target/calculator-0.0.1-SNAPSHOT.jar s3://$AWS_S3_BUCKET/$ARTIFACT_NAME'
-                    sh 'aws elasticbeanstalk create-application-version --application-name $AWS_EB_APP_NAME --version-label $AWS_EB_APP_VERSION --source-bundle S3Bucket=$AWS_S3_BUCKET,S3Key=$ARTIFACT_NAME'
+                    sh 'aws elasticbeanstalk create-application-version --application-name $AWS_EB_APP_NAME --version-label $AWS_EB_APP_VERSION --source-bundle S3Bucket=$BUCKET,S3Key=MavenTutorial-"${ARTVERSION}".war'
                     sh 'aws elasticbeanstalk update-environment --application-name $AWS_EB_APP_NAME --environment-name $AWS_EB_ENVIRONMENT --version-label $AWS_EB_APP_VERSION'
                 }
             }
