@@ -6,7 +6,7 @@ pipeline {
     	}	
      environment {
         AWS_EB_APP_NAME = 'app1'
-        AWS_EB_ENVIRONMENT = 'env1'
+        AWS_EB_ENVIRONMENT = 'App1-env'
         AWS_EB_APP_VERSION = "${BUILD_ID}"
         ARTVERSION = "${env.BUILD_ID}"
         CREDENTIALS_ID = 'multi-k8s' 
