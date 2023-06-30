@@ -1,9 +1,6 @@
 pipeline {
     agent any 
      environment {
-        #AWS_ACCESS_KEY_ID     = credentials('jenkins-aws-secret-key-id')
-        #AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws-secret-access-key')
-        #ARTIFACT_NAME = 'calculator.jar'
         AWS_EB_APP_NAME = 'app1'
         AWS_EB_ENVIRONMENT = 'env1'
         AWS_EB_APP_VERSION = "${BUILD_ID}"
