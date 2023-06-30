@@ -8,6 +8,16 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>MavenTutorial Maven Webapp</name>
   <url>http://maven.apache.org</url>
+  <distributionManagement>
+    <snapshotRepository>
+      <id>nexus-snapshots</id>
+      <url>http://10.5.0.4:8081/repository/maven-snapshots/</url>
+    </snapshotRepository>
+    <repository>
+      <id>nexus-releases</id>
+      <url>http://10.5.0.4:8081/repository/maven-releases/</url>
+    </repository>
+  </distributionManagement>
   <repositories>
     <repository>
       <id>maven-group</id>
