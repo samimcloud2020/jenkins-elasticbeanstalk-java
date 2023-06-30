@@ -1,5 +1,9 @@
 pipeline {
     agent any 
+     tools {
+        maven "maven"
+        jdk "java"
+    	}	
      environment {
         AWS_EB_APP_NAME = 'app1'
         AWS_EB_ENVIRONMENT = 'env1'
