@@ -5,7 +5,17 @@
 
   <servers>
     <server>
+      <id>maven-central</id>
+      <username>admin</username>
+      <password>admin123</password>
+    </server>
+    <server>
       <id>maven-snapshots</id>
+      <username>admin</username>
+      <password>admin123</password>
+    </server>
+    <server>
+      <id>maven-group</id>
       <username>admin</username>
       <password>admin123</password>
     </server>
@@ -18,10 +28,11 @@
 
   <mirrors>
     <mirror>
-      <id>central</id>
-      <name>central</name>
+      <id>maven-releases</id>
+      <name>maven-releases</name>
       <url>http://10.5.0.4:8081/repository/maven-releases/</url>
       <mirrorOf>*</mirrorOf>
     </mirror>
   </mirrors>
+
 </settings>
