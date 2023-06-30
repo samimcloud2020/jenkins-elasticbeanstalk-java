@@ -77,21 +77,15 @@ pipeline {
                    -Dsonar.jacoco.reportsPath=target/jacoco.exec \
                    -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml'''
             }
-        
-          }
-        }
-    stage("Quality Gate"){
-	steps {
-	withSonarQubeEnv('sonar') {
              timeout(time: 1, unit: 'HOURS') { // Just in case something goes wrong, pipeline will be killed after a timeout
              def qg = waitForQualityGate() // Reuse taskId previously collected by withSonarQubeEnv
              if (qg.status != 'OK') {
                  error "Pipeline aborted due to quality gate failure: ${qg.status}"
                       }
              }
-       }
- }
-    }     
+          }
+        }
+  
     stage("Publish to Nexus Repository Manager") {
             steps {
                 script {
