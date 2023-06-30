@@ -8,21 +8,10 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>MavenTutorial Maven Webapp</name>
   <url>http://maven.apache.org</url>
-   
-  <distributionManagement>
-    <snapshotRepository>
-      <id>maven-snapshots</id>
-      <url>http://10.5.0.4:8081/repository/maven-snapshots/</url>
-    </snapshotRepository>
-    <repository>
-      <id>maven-releases</id>
-      <url>http://10.5.0.4:8081/repository/maven-releases/</url>
-    </repository>
-  </distributionManagement>
   <repositories>
     <repository>
       <id>maven-releases</id>
-      <url>http://10.5.0.4:8081/repository/maven-releases/</url>
+      <url>http://10.128.0.32:8081/repository/maven-releases//</url>
     </repository>
   </repositories>
   <dependencies>
@@ -34,14 +23,6 @@
     </dependency>
   </dependencies>
   <build>
-        <pluginManagement>
-          <plugins>
-            <plugin>
-              <artifactId>maven-resources-plugin</artifactId>
-                  <finalName>MavenTutorial</finalName>
-              <version>2.7</version>
-            </plugin>           
-          </plugins>
-        </pluginManagement>   
-      </build>
+    <finalName>MavenTutorial</finalName>
+  </build>
 </project>
