@@ -5,22 +5,22 @@
 
   <servers>
     <server>
-      <id>maven-central</id>
+      <id>vprofile-release</id>
       <username>admin</username>
       <password>admin123</password>
     </server>
     <server>
-      <id>maven-snapshots</id>
+      <id>vprofile-snapshot</id>
       <username>admin</username>
       <password>admin123</password>
     </server>
     <server>
-      <id>maven-group</id>
+      <id>vpro-maven-central</id>
       <username>admin</username>
       <password>admin123</password>
     </server>
     <server>
-      <id>maven-releases</id>
+      <id>vpro-maven-group</id>
       <username>admin</username>
       <password>admin123</password>
     </server>
@@ -28,9 +28,9 @@
 
   <mirrors>
     <mirror>
-      <id>maven-releases</id>
-      <name>maven-releases</name>
-      <url>http://10.5.0.4:8081/repository/maven-releases/</url>
+      <id>vpro-maven-central</id>
+      <name>vpro-maven-central</name>
+      <url>http://10.5.0.4:8081/repository/vpro-maven-group/</url>
       <mirrorOf>*</mirrorOf>
     </mirror>
   </mirrors>
