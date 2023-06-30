@@ -8,6 +8,16 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>MavenTutorial Maven Webapp</name>
   <url>http://maven.apache.org</url>
+   <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <artifactId>maven-resources-plugin</artifactId>
+              <version>2.7</version>
+            </plugin>           
+          </plugins>
+        </pluginManagement>   
+    </build>
   <distributionManagement>
     <snapshotRepository>
       <id>maven-snapshots</id>
