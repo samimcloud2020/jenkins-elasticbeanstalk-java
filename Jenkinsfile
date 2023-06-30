@@ -33,7 +33,7 @@ pipeline {
             post {
                 success {
                     echo 'Now Archiving...'
-                    archiveArtifacts artifacts: '**/target/MavenTutorial-${ARTVERSION}.war'
+                    archiveArtifacts artifacts: '**/target/*.war'
 		    }
             }
         }
@@ -123,7 +123,7 @@ pipeline {
             steps {
                 withAWS(credentials: 'aws', region: 'us-east-1') {
 			sh 'aws configure set region us-east-1'
-                        sh 'aws s3 cp ./target/MavenTutorial-${ARTVERSION}.war s3://$BUCKET/MavenTutorial-${ARTVERSION}.war'
+                        sh 'aws s3 cp ./target/*.war s3://$BUCKET/MavenTutorial-${ARTVERSION}.war'
 			}
 		}
 	}	 
