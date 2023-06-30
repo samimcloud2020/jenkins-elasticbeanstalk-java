@@ -59,13 +59,7 @@ pipeline {
                 }
             }
         }
-	 stage('CODE ANALYSIS with SONARQUBE') {
-          
-		    environment {
-                scannerHome = tool 'sonar'
-          }
-
-           
+	           
      	 stage('CODE ANALYSIS with SONARQUBE') {
           
 		    environment {
@@ -242,4 +236,4 @@ stage("Publish to Nexus Repository Manager") {
       }
  }
 }
-}
+
