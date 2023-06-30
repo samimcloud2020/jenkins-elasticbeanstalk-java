@@ -126,7 +126,7 @@ pipeline {
                     sh "rm -rf ${env.BUILD_ID}"
 		    sh "mkdir ${env.BUILD_ID}"
 		    sh "cd ${env.BUILD_ID}"
-                    sh  'curl -u ${NEXUS_CREDENTIALS_ID} -o MavenTutorial.war http://10.5.0.4:8081/repository/maven-releases/com/crunchify/MavenTutorial/${ARTVERSION}/MavenTutorial-${ARTVERSION}.war"'
+                    sh  "curl -u ${NEXUS_CREDENTIALS_ID} -o MavenTutorial.war http://10.5.0.4:8081/repository/maven-releases/com/crunchify/MavenTutorial/${ARTVERSION}/MavenTutorial-${ARTVERSION}.war"
                     sh "touch Dockerfile"
 		    sh " echo FROM tomcat >> Dockerfile"
 		    sh " echo ADD MavenTutorial.war /usr/local/tomcat/webapps >> Dockerfile"
