@@ -8,11 +8,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>MavenTutorial Maven Webapp</name>
   <url>http://maven.apache.org</url>
-  <plugin>
-  <groupId>org.apache.maven.plugins</groupId>
-  <artifactId>maven-war-plugin</artifactId>
-  <version>2.2</version>
-</plugin>
+ 
   <repositories>
     <repository>
       <id>vpro-maven-group</id>
