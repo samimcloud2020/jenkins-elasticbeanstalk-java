@@ -11,10 +11,11 @@
  
   <repositories>
     <repository>
-      <id>vpro-maven-group</id>
-      <url>http://10.5.0.4:8081/repository/vpro-maven-group//</url>
+      <id>maven-group</id>
+      <url>http://10.5.0.4:8081/repository/maven-group/</url>
     </repository>
   </repositories>
+</project>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
