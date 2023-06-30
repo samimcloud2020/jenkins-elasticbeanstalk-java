@@ -11,7 +11,7 @@
   <repositories>
     <repository>
       <id>maven-releases</id>
-      <url>http://10.128.0.32:8081/repository/maven-releases//</url>
+      <url>http://10.5.0.4:8081/repository/maven-releases//</url>
     </repository>
   </repositories>
   <dependencies>
