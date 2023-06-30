@@ -13,8 +13,8 @@ pipeline {
 	NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "http"
         NEXUS_URL = "10.5.0.4:8081"
-        NEXUS_REPOSITORY = "vprofile-release"
-	NEXUS_REPO_ID = "vprofile-release"
+        NEXUS_REPOSITORY = "maven-releases"
+	NEXUS_REPO_ID = "maven-releases"
 	NEXUS_CREDENTIAL_ID = "nexus3"
 	AWS_REGION = "us-east-1"
 	ECR_REGISTRY_ID = "291222035571.dkr.ecr.us-east-1.amazonaws.com/samim-repo1"
@@ -126,7 +126,7 @@ pipeline {
                     sh "rm -rf ${env.BUILD_ID}"
 		    sh "mkdir ${env.BUILD_ID}"
 		    sh "cd ${env.BUILD_ID}"
-                    sh  'curl -u ${NEXUS_CREDENTIALS_ID} -o MavenTutorial.war http://10.5.0.4:8081/repository/vpro-maven-group/com/crunchify/MavenTutorial/${ARTVERSION}/MavenTutorial-${ARTVERSION}.war"'
+                    sh  'curl -u ${NEXUS_CREDENTIALS_ID} -o MavenTutorial.war http://10.5.0.4:8081/repository/maven-releases/com/crunchify/MavenTutorial/${ARTVERSION}/MavenTutorial-${ARTVERSION}.war"'
                     sh "touch Dockerfile"
 		    sh " echo FROM tomcat >> Dockerfile"
 		    sh " echo ADD MavenTutorial.war /usr/local/tomcat/webapps >> Dockerfile"
