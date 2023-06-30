@@ -119,7 +119,7 @@ pipeline {
                 }
             }
         }
-     stage('Push jar file to s3 bucket') {
+     stage('Push war file to s3 bucket') {
             steps {
                 withAWS(credentials: 'aws', region: 'us-east-1') {
 			sh 'aws configure set region us-east-1'
@@ -127,7 +127,7 @@ pipeline {
 			}
 		}
 	}	 
-     stage ('Pull jar file from Nexus') {
+     stage ('Pull war file from Nexus') {
         	steps {
 		script{
                     withCredentials([usernameColonPassword(credentialsId: 'nexus3', variable: 'NEXUS_CREDENTIALS_ID')]) {
