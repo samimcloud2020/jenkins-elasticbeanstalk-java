@@ -183,7 +183,7 @@ pipeline {
             }
         }
 }
-    
+    /*
 	 stage ('mvn clean deploy'){
             steps {
                 sh 'mvn clean deploy'
@@ -193,7 +193,7 @@ pipeline {
                     echo 'sucessful deploy artifact to nexus'
                 }
             }
-        }  
+        }  */
 /*
     stage('Integrate Jenkins with EKS Cluster and Deploy App in stagging cluster') {
             steps {
